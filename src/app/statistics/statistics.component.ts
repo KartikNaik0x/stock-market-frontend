@@ -4,6 +4,7 @@ import {  Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -14,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  filteredPrices: any[] =[];
+  filteredPrices: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   data:any;
  
  
@@ -64,7 +65,7 @@ export class StatisticsComponent implements OnInit {
       (data) => {
         
        this.data=data;
-       this.calculateStatistics();
+       this.calculateStatistics(this.data);
        this.initializeLineChartData(this.data)
         console.log(data);
         
@@ -97,6 +98,11 @@ export class StatisticsComponent implements OnInit {
         {
           data: this.lineChartLabels.map((timestamp) => this.getStockPriceByTimestamp(timestamp,modifiedData)),
           label: 'Stock Price',
+          backgroundColor: 'rgba(1, 1, 1,0.1)', 
+         borderColor: 'rgba(0, 0, 0 ,1)', 
+         pointBackgroundColor:'rgb(75, 192, 192)',
+         borderWidth: 2, 
+         pointRadius: 3,
         },
       ];
 
@@ -142,12 +148,12 @@ export class StatisticsComponent implements OnInit {
     startTime.setHours(0,0,0,0)
     endTime.setHours(0,0,0,0)
     
-    this.filteredPrices = this.data?.previousStockPrices.filter((price: any) => {
+    this.filteredPrices = new MatTableDataSource(this.data?.previousStockPrices.filter((price: any) => {
       const priceTime = new Date(price.timeStamp);
       priceTime.setHours(0,0,0,0)
       console.log(priceTime)
       return priceTime >= startTime && priceTime <= endTime;
-    }) || [];
+    })) || [];
     
     const modifiedData={
         previousStockPrices:this.filteredPrices,

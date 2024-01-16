@@ -33,8 +33,12 @@
     </mat-form-field>
   </div>
 </div>
+<div class="ce">
+  <button (click)="onSearchClick()">Search</button>
+</div>
 
-  <h2>Filter The Stock Prices</h2>
+
+  <!-- <h2>Filter The Stock Prices</h2>
 <div *ngIf="filteredPrices && filteredPrices.length > 0; else noData">
   <ul>
     <li *ngFor="let price of filteredPrices">
@@ -44,9 +48,32 @@
 </div>
 <ng-template #noData>
   <p>No data </p>
+</ng-template> -->
+
+<h2>Filtered Stock Prices</h2>
+<div *ngIf="filteredPrices && filteredPrices.data.length > 0; else noData">
+  <mat-table [dataSource]="filteredPrices" class="mat-elevation-z8">
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef="let price">{{ price.timeStamp | date: 'longDate' }}</mat-cell>
+    </ng-container>
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let price">{{ price.price }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['date', 'price']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['date', 'price'];"></mat-row>
+  </mat-table>
+</div>
+<ng-template #noData>
+  <p>No data available for the selected date range.</p>
 </ng-template>
+
+
 <div class="st">
-    <button (click)="onSearchClick()">Search</button>
+   
 
     <button mat-raised-button color="warn"  (click)="onCloseClick()">Back</button>
 </div>
