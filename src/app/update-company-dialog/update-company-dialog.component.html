@@ -1,0 +1,26 @@
+<mat-dialog-content>
+    <form [formGroup]="updateForm">
+      <mat-form-field>
+        <input matInput placeholder="Company Code" formControlName="companyCode" [readonly]="true"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Company Name" formControlName="companyName" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Company CEO" formControlName="companyCEO" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Company Turnover" formControlName="companyTurnover" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Company Website" formControlName="companyWebsite" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Stock Exchange" formControlName="stockExchange" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="onUpdateClick()">Update</button>
+  </mat-dialog-actions>

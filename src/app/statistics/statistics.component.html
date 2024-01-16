@@ -1,0 +1,52 @@
+
+
+
+<h2>Stock Statistics </h2>
+<div *ngIf="maxPrice !== undefined && minPrice !== undefined">
+  <p>Max Price: {{ maxPrice }}</p>
+  <p>Min Price: {{ minPrice }}</p>
+  <p>Avg Price: {{avgPrice}}</p>
+</div>
+
+<h2>Stock Price Chart</h2>
+<div style="display: flex;">
+  <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend"
+          [type]="lineChartType"
+          [height]=70
+          [width]=300>
+  </canvas>
+</div>
+<br>
+<div class="dates">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Start Time" type="datetime-local" [(ngModel)]="startTime" />
+    </mat-form-field>
+</div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="End Time" type="datetime-local" [(ngModel)]="endTime" />
+    </mat-form-field>
+  </div>
+</div>
+
+  <h2>Filter The Stock Prices</h2>
+<div *ngIf="filteredPrices && filteredPrices.length > 0; else noData">
+  <ul>
+    <li *ngFor="let price of filteredPrices">
+      <strong>Date:</strong> {{ price.timeStamp | date: 'longDate' }} - <strong>Price:</strong> {{ price.price }}
+    </li>
+  </ul>
+</div>
+<ng-template #noData>
+  <p>No data </p>
+</ng-template>
+<div class="st">
+    <button (click)="onSearchClick()">Search</button>
+
+    <button mat-raised-button color="warn"  (click)="onCloseClick()">Back</button>
+</div>

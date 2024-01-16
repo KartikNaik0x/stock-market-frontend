@@ -1,0 +1,10 @@
+.st{
+    display: flex;
+    flex-direction: row;
+    justify-content: center ;
+}
+.dates{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}

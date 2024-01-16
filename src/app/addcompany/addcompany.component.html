@@ -1,0 +1,86 @@
+<div class="container mt-5">
+    <div class="card text-center" style="padding: 20px;">
+       <form  class="form-group" #addpolicyForm="ngForm" (ngSubmit)="addpol(addpolicyForm)">
+        <mat-form-field>
+           <input type="text"
+            ngModel
+            matInput
+            name="companyName"
+            id="companyName"  
+            placeholder="Enter Company Name"
+            required="required"
+            class="form-control mb-2"
+           >
+        </mat-form-field>
+        <br>
+         
+
+        <mat-form-field>
+          <input type="text"
+          ngModel
+          matInput
+          name="companyCEO"
+          id="companyCEO"  
+          placeholder="Enter Company CEO Name"
+          class="form-control mb-2"
+         >
+        </mat-form-field>
+        <br>
+    <mat-form-field>
+          <input type="text"
+          ngModel
+          matInput
+          name="companyTurnover"
+          id="companyTurnover"  
+          placeholder="Enter Company turnover"
+          class="form-control mb-2"
+         >
+        </mat-form-field>
+        <br>
+         <!-- <label ngModel class="form-control mb-2">Choose a Policy:</label> -->
+           
+         
+         <!-- <input type="text"
+         ngModel
+         name="polType"
+         id="polType"  
+         placeholder="Enter Policy Type"
+         class="form-control mb-2"
+        > -->
+    <mat-form-field>
+         <input type="text"
+         ngModel
+         matInput
+         name="companyWebsite"
+         id="companyWebsite"  
+         placeholder="Enter copmany website"
+         class="form-control mb-2"
+        >
+        
+    </mat-form-field>
+    <br>
+        <div class="mb-2">Choose Stock exchange</div>
+        <select ngModel placeholder="Choose Stock exchange" class="form-control mb-2" name="stockExchange" id="stockExchange">
+        <option value="BSE">BSE</option>
+        <option value="NSE">NSE</option>
+        
+
+        </select>
+
+      
+
+      
+
+    
+
+     
+
+   
+
+  
+
+           <input type="submit" value="Add Company" class="btn btn-primary">
+       </form>
+
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <div class="card text-center" style="padding: 20px;">
+       <form  class="form-group" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+           <input type="text"
+            ngModel
+            name="username"
+            id="username"  
+            placeholder="Enter Username"
+            required="required"
+            class="form-control mb-2"
+           >
+           <input type="password"
+            ngModel
+            name="password"
+            id="password"  
+            placeholder="Enter password"
+            class="form-control mb-2"
+           >
+
+           <input type="text"
+           ngModel
+           name="firstname"
+           id="firstname"  
+           placeholder="Enter Firstname"
+           class="form-control mb-2"
+          >
+
+          <input type="text"
+          ngModel
+          name="lastname"
+          id="lastname"  
+          placeholder="Enter Lastname"
+          class="form-control mb-2"
+         >
+         
+
+        <input type="email"
+        ngModel
+        name="email"
+        id="email"  
+        placeholder="Enter email"
+        class="form-control mb-2"
+       >
+
+      <input type="text"
+      ngModel
+      name="contact"
+      id="contact"  
+      placeholder="Enter contact number"
+      class="form-control mb-2"
+     >
+
+
+    <!-- <input type="text"
+    ngModel
+    name="employertype"
+    id="employertype"  
+    placeholder="Enter Employertype"
+    class="form-control mb-2"
+   > -->
+
+
+           <input type="submit" value="Register" class="btn btn-primary">
+       </form>
+
+    </div>
+</div>
