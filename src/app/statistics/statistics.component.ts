@@ -113,10 +113,10 @@ export class StatisticsComponent implements OnInit {
     return stockPrice ? stockPrice.price : 0;
   }
   
-  calculateStatistics():void{
+  calculateStatistics(newData:any):void{
    
-    const previousStockPrices = this.data?.previousStockPrices || [];
-    const latestStockPrice = this.data?.latestStockPrice ||{};
+    const previousStockPrices = newData.previousStockPrices || [];
+    const latestStockPrice = newData.latestStockPrice ||{};
     console.log(previousStockPrices)
     console.log(latestStockPrice)
     if(previousStockPrices.length > 0){
@@ -154,6 +154,7 @@ export class StatisticsComponent implements OnInit {
         latestStockPrice:{}
     }
     this.initializeLineChartData(modifiedData)
+    this.calculateStatistics(modifiedData)
     console.log('Filtered Prices:', this.filteredPrices);
   }
 
