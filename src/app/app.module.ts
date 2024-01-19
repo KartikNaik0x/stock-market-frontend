@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 
 import { AuthGuard } from './_auth/auth.guard';
-import { AuthInterceptor } from './_auth/auth.interceptor';
+
 import { UserService } from './_services/user.service';
 import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
@@ -76,12 +76,7 @@ import { NgChartsModule } from 'ng2-charts';
    
   ],
   providers: [
-    AuthGuard,
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi:true
-    },
+  
     UserService
   ],
   bootstrap: [AppComponent]

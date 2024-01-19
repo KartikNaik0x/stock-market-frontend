@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from '../_services/user-auth.service';
 import { UserService } from '../_services/user.service';
@@ -158,9 +158,16 @@ export class CompanydetailsComponent implements OnInit {
   }
 
   deleteCompany(companyCode: number):void{
+    const token = localStorage.getItem("jwtToken");
+    // Set up headers with Authorization Bearer token
+   const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    // Include headers in the HTTP options
+   const options = { headers: headers };
     const deleteUrl = `http://localhost:8081/v1.0/market/company/delete/${companyCode}`;
 
-    this.http.delete(deleteUrl).subscribe((data)=>{
+    this.http.delete(deleteUrl,options).subscribe((data)=>{
       console.log("deleted");
       this.fetchCompanyData();
     })
@@ -172,8 +179,15 @@ export class CompanydetailsComponent implements OnInit {
     return this.userAuthService.getRole();
   }
   fetchCompanyData(): void {
+    const token = localStorage.getItem("jwtToken");
+  // Set up headers with Authorization Bearer token
+ const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  // Include headers in the HTTP options
+ const options = { headers: headers };
     // Make an HTTP GET request to the API
-    this.http.get<Company[]>(this.apiurl).subscribe(
+    this.http.get<Company[]>(this.apiurl,options).subscribe(
       (data) => {
         // Assign the fetched data to the dataSource
         this.dataSource = data.map((company) => ({

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {  Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 
 
@@ -58,10 +58,17 @@ export class StatisticsComponent implements OnInit {
   }
 
   fetchCompanyData(companyCode:number): void {
+    const token = localStorage.getItem("jwtToken");
+    // Set up headers with Authorization Bearer token
+   const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    // Include headers in the HTTP options
+   const options = { headers: headers };
     
     const apiurl=`http://localhost:8081/v1.0/market/company/info/${companyCode}`
    
-    this.http.get<any[]>(apiurl).subscribe(
+    this.http.get<any[]>(apiurl,options).subscribe(
       (data) => {
         
        this.data=data;
